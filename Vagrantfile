@@ -2,10 +2,10 @@
 # vi:set ft=ruby sw=2 ts=2 sts=2:
 
 # Define the prefix for the VM name and hostname of the nodes
-NODE_PREFIX = "kube"
+NODE_PREFIX = "cube"
 
 # Define the prefix for the VM network forwarded port
-PORT_PREFIX = "27"
+PORT_PREFIX = "67"
 
 # Define the number of master and worker nodes
 # If this number is changed, remember to update setup-hosts.sh script with the new hosts IP details in /etc/hosts of each VM.
@@ -28,7 +28,7 @@ Vagrant.configure("2") do |config|
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://vagrantcloud.com/search.
   # config.vm.box = "base"
-  config.vm.box = "ubuntu/bionic64"
+  config.vm.box = "hashicorp/bionic64"
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
@@ -72,7 +72,7 @@ Vagrant.configure("2") do |config|
         node.vm.network "forwarded_port", guest: 22, host: PORT_PREFIX + "#{10 + i}"
 
         node.vm.provision "setup-hosts", :type => "shell", :path => "ubuntu/vagrant/setup-hosts.sh" do |s|
-          s.args = ["enp0s8"]
+          s.args = ["eth0"]
         end
 
         node.vm.provision "setup-dns", type: "shell", :path => "ubuntu/update-dns.sh"
@@ -94,7 +94,7 @@ Vagrant.configure("2") do |config|
                 node.vm.network "forwarded_port", guest: 22, host: PORT_PREFIX + "#{20 + i}"
 
         node.vm.provision "setup-hosts", :type => "shell", :path => "ubuntu/vagrant/setup-hosts.sh" do |s|
-          s.args = ["enp0s8"]
+          s.args = ["eth0"]
         end
 
         node.vm.provision "setup-dns", type: "shell", :path => "ubuntu/update-dns.sh"
