@@ -1,0 +1,2 @@
+. ~/.functions
+for v in $(vagrant status --machine-readable|awk -F, '$3~/metadata/{print $2}'); do VERBOSE=2 vag=tmp vmr $v start nogui;done

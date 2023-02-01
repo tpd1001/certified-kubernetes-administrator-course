@@ -1,0 +1,4 @@
+kubeconfig
+Ansible-Vagrant.sh
+.vagrant
+.DS_Store

@@ -1,0 +1,11 @@
+# Instructions
+
+Because vagrant/vmware_fusion doesn't seem to work reliably, you may need to start/stop the environment VMs as follows:
+
+```bash
+# sequentially boot all VMs with no wait inbetween
+./up
+
+# sequentially shutdown all VMs with no wait inbetween
+./down
+```
