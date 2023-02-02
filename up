@@ -1,2 +1,2 @@
 . ~/.functions
-for v in $(vagrant status --machine-readable|awk -F, '$3~/metadata/{print $2}'); do VERBOSE=2 vag=tmp vmr $v start nogui;done
+for v in $(vagrant status --machine-readable|grep -v not_created|awk -F, '$3~/^state$/{print $2}'); do VERBOSE=2 vag=tmp vmr $v start nogui;done
